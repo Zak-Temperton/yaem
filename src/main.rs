@@ -1,15 +1,15 @@
 use std::env;
 
 use enigma_machine::EnigmaMachine;
-use parts::{Plugboard, Reflector, Rotor, Rotors, ALPHABET_LEN};
+use parts::{Plugboard, Reflector, ReflectorCode, Rotor, RotorCode, Rotors, ALPHABET_LEN};
 
 mod enigma_machine;
 mod parts;
 fn main() {
   let rotor1 = Rotor::from_string("ekmflgdqvzntowyhxuspaibrcj".to_string()).with_rotation(5);
   let rotor2 = Rotor::from_string("ajdksiruxblhwtmcqgznpyfvoe".to_string()).with_rotation(1);
-  let rotor3 = Rotor::from_string("bdfhjlcprtxvznyeiwgakmusqo".to_string()).with_rotation(24);
-  let reflector = Reflector::from_string("ejmzalyxvbwfcrquontspikhgd".to_string());
+  let rotor3 = Rotor::new(RotorCode::II).with_rotation(24);
+  let reflector = Reflector::new(ReflectorCode::ReflectorA);
   let rotors = Rotors::new(rotor1, rotor2, rotor3, reflector);
   let plugboard = Plugboard::new()
     .add_connection(1, 3)
