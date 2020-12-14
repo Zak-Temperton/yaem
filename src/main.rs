@@ -20,7 +20,13 @@ fn main() {
   let mut emach_1 = EnigmaMachine::new(rotors, plugboard);
   let mut emach_2 = emach_1.clone();
 
-  let input = env::args().skip(1).next().unwrap(); //skip ffirst as it is the name of the program
+  let args = env::args();
+  if args.len() == 1 {
+    println!("Needs to have an additional argument of charachters a..=z");
+    return;
+  }
+
+  let input = args.skip(1).next().unwrap(); //skip ffirst as it is the name of the program
   let mut result = String::with_capacity(input.len());
   for i in input.bytes() {
     let i = u8_to_usize(i);
