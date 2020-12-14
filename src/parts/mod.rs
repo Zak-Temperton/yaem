@@ -11,4 +11,3 @@ mod rotors;
 pub use rotors::Rotors;
 
 pub const ALPHABET_LEN: usize = 26;
-

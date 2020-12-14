@@ -1,10 +1,11 @@
+mod enigma_machine;
+mod parts;
+
 use std::env;
 
 use enigma_machine::EnigmaMachine;
 use parts::{Plugboard, Reflector, ReflectorCode, Rotor, RotorCode, Rotors, ALPHABET_LEN};
 
-mod enigma_machine;
-mod parts;
 fn main() {
   let rotor1 = Rotor::new(RotorCode::I).with_rotation(5);
   let rotor2 = Rotor::new(RotorCode::II).with_rotation(1);
