@@ -1,3 +1,5 @@
+use crate::u8_to_usize;
+
 use super::ALPHABET_LEN;
 #[derive(Clone)]
 pub struct Rotor {
@@ -10,7 +12,7 @@ impl Rotor {
     assert_eq!(string.len(), ALPHABET_LEN);
     let mut connections = [(0, 0); ALPHABET_LEN];
     for (i, c) in string.bytes().enumerate() {
-      let c = (c - 'a' as u8) as usize;
+      let c = u8_to_usize(c);
       connections[i].0 = c;
       connections[c].1 = i;
     }

@@ -1,3 +1,5 @@
+use crate::u8_to_usize;
+
 use super::ALPHABET_LEN;
 
 #[derive(Clone)]
@@ -10,7 +12,7 @@ impl Reflector {
     assert_eq!(string.len(), ALPHABET_LEN);
     let mut connections = [0; ALPHABET_LEN];
     for (i, c) in string.bytes().enumerate() {
-      connections[i] = (c - 'a' as u8) as usize;
+      connections[i] = u8_to_usize(c);
     }
     Reflector { connections }
   }

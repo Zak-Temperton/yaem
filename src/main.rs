@@ -15,6 +15,7 @@ fn main() {
     .add_connection(1, 3)
     .add_connection(25, 7)
     .add_connection(2, 4)
+    .add_connection_from_chars('f', 'j')
     .build();
   let mut emach_1 = EnigmaMachine::new(rotors, plugboard);
   let mut emach_2 = emach_1.clone();
@@ -41,11 +42,11 @@ fn main() {
 }
 
 #[inline(always)]
-fn usize_to_char(num: usize) -> char {
+pub fn usize_to_char(num: usize) -> char {
   (num + 'a' as usize) as u8 as char
 }
 
 #[inline(always)]
-fn u8_to_usize(num: u8) -> usize {
+pub fn u8_to_usize(num: u8) -> usize {
   (num - 'a' as u8) as usize
 }
