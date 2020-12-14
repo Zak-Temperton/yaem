@@ -28,12 +28,12 @@ pub struct PlugboardBuilder {
 }
 
 impl PlugboardBuilder {
-  pub fn add_connection(mut self, connection: (usize, usize)) -> Self {
-    assert_ne!(connection.0, connection.1);
-    assert!(!self.connections.contains_key(&connection.0));
-    assert!(!self.connections.contains_key(&connection.1));
-    self.connections.insert(connection.0, connection.1);
-    self.connections.insert(connection.1, connection.0);
+  pub fn add_connection(mut self, con1: usize, con2: usize) -> Self {
+    assert_ne!(con1, con2);
+    assert!(!self.connections.contains_key(&con1));
+    assert!(!self.connections.contains_key(&con2));
+    self.connections.insert(con1, con2);
+    self.connections.insert(con2, con1);
     self
   }
 

@@ -12,9 +12,9 @@ fn main() {
   let reflector = Reflector::from_string("ejmzalyxvbwfcrquontspikhgd".to_string());
   let rotors = Rotors::new(rotor1, rotor2, rotor3, reflector);
   let plugboard = Plugboard::new()
-    .add_connection((1, 3))
-    .add_connection((25, 7))
-    .add_connection((2, 4))
+    .add_connection(1, 3)
+    .add_connection(25, 7)
+    .add_connection(2, 4)
     .build();
   let mut emach_1 = EnigmaMachine::new(rotors, plugboard);
   let mut emach_2 = emach_1.clone();
