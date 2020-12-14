@@ -1,13 +1,7 @@
 mod plugboard;
 pub use plugboard::Plugboard;
 
-mod reflector;
-pub use reflector::{Reflector, ReflectorCode};
-
-mod rotor;
-pub use rotor::{Rotor, RotorCode};
-
-mod rotors;
-pub use rotors::Rotors;
+pub mod reflector;
+pub mod rotor;
 
 pub const ALPHABET_LEN: usize = 26;

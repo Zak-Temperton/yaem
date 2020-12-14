@@ -1,4 +1,4 @@
-use crate::parts::{Plugboard, Rotors};
+use crate::parts::{rotor::Rotors, Plugboard};
 
 #[derive(Clone)]
 pub struct EnigmaMachine {
