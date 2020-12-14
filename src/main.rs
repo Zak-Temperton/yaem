@@ -6,9 +6,9 @@ use parts::{Plugboard, Reflector, ReflectorCode, Rotor, RotorCode, Rotors, ALPHA
 mod enigma_machine;
 mod parts;
 fn main() {
-  let rotor1 = Rotor::from_string("ekmflgdqvzntowyhxuspaibrcj".to_string()).with_rotation(5);
-  let rotor2 = Rotor::from_string("ajdksiruxblhwtmcqgznpyfvoe".to_string()).with_rotation(1);
-  let rotor3 = Rotor::new(RotorCode::II).with_rotation(24);
+  let rotor1 = Rotor::new(RotorCode::I).with_rotation(5);
+  let rotor2 = Rotor::new(RotorCode::II).with_rotation(1);
+  let rotor3 = Rotor::new(RotorCode::III).with_rotation(24);
   let reflector = Reflector::new(ReflectorCode::ReflectorA);
   let rotors = Rotors::new(rotor1, rotor2, rotor3, reflector);
   let plugboard = Plugboard::new()
