@@ -27,6 +27,7 @@ impl Plugboard {
 pub struct PlugboardBuilder {
   connections: HashMap<usize, usize>,
 }
+
 //Everything is inlined as they are not likely to be called often
 impl PlugboardBuilder {
   #[inline(always)]

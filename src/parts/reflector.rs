@@ -1,4 +1,4 @@
-use super::ALPHABET_LEN;
+use super::{u8_to_usize, ALPHABET_LEN};
 
 #[allow(dead_code)]
 pub enum ReflectorCode {
@@ -50,8 +50,4 @@ impl Reflector {
   pub fn pass(&self, val: usize) -> usize {
     self.connections[val]
   }
-}
-
-fn u8_to_usize(c: u8) -> usize {
-  todo!()
 }
