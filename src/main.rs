@@ -7,7 +7,7 @@ use enigma_machine::EnigmaMachine;
 use parts::{
   reflector::{Reflector, ReflectorCode},
   rotor::{Rotor, RotorCode, Rotors},
-  Plugboard, ALPHABET_LEN,
+  u8_to_usize, usize_to_char, Plugboard, ALPHABET_LEN,
 };
 
 fn main() {
@@ -51,14 +51,4 @@ fn main() {
     );
   }
   println!("\nEncoded: {}", result);
-}
-
-#[inline(always)]
-pub fn usize_to_char(num: usize) -> char {
-  (num + 'a' as usize) as u8 as char
-}
-
-#[inline(always)]
-pub fn u8_to_usize(num: u8) -> usize {
-  (num - 'a' as u8) as usize
 }

@@ -7,10 +7,12 @@ pub struct EnigmaMachine {
 }
 
 impl EnigmaMachine {
+  #[inline(always)]
   pub fn new(rotors: Rotors, plugboard: Plugboard) -> Self {
     EnigmaMachine { rotors, plugboard }
   }
 
+  #[inline(always)]
   pub fn pass(&mut self, val: usize) -> usize {
     self
       .plugboard

@@ -1,8 +1,6 @@
 use std::collections::HashMap;
 
-use crate::u8_to_usize;
-
-use super::ALPHABET_LEN;
+use super::{u8_to_usize, ALPHABET_LEN};
 
 #[derive(Clone)]
 pub struct Plugboard {
@@ -10,6 +8,7 @@ pub struct Plugboard {
 }
 
 impl Plugboard {
+  #[inline(always)]
   pub fn new() -> PlugboardBuilder {
     PlugboardBuilder {
       connections: HashMap::with_capacity(ALPHABET_LEN),
@@ -28,8 +27,9 @@ impl Plugboard {
 pub struct PlugboardBuilder {
   connections: HashMap<usize, usize>,
 }
-
+//Everything is inlined as they are not likely to be called often
 impl PlugboardBuilder {
+  #[inline(always)]
   pub fn add_connection(mut self, con1: usize, con2: usize) -> Self {
     assert_ne!(con1, con2);
     assert!(!self.connections.contains_key(&con1));
@@ -39,10 +39,12 @@ impl PlugboardBuilder {
     self
   }
 
+  #[inline(always)]
   pub fn add_connection_from_chars(self, con1: char, con2: char) -> Self {
     self.add_connection(u8_to_usize(con1 as u8), u8_to_usize(con2 as u8))
   }
 
+  #[inline(always)]
   pub fn build(self) -> Plugboard {
     Plugboard {
       connections: self.connections,

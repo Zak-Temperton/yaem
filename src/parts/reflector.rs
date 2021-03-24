@@ -1,5 +1,3 @@
-use crate::u8_to_usize;
-
 use super::ALPHABET_LEN;
 
 #[allow(dead_code)]
@@ -34,6 +32,7 @@ pub struct Reflector {
 }
 
 impl Reflector {
+  #[inline(always)]
   pub fn new(code: ReflectorCode) -> Self {
     Self::from_string(code.to_string())
   }
@@ -51,4 +50,8 @@ impl Reflector {
   pub fn pass(&self, val: usize) -> usize {
     self.connections[val]
   }
+}
+
+fn u8_to_usize(c: u8) -> usize {
+  todo!()
 }

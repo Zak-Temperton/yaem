@@ -1,6 +1,4 @@
-use crate::u8_to_usize;
-
-use super::{reflector::Reflector, ALPHABET_LEN};
+use super::{reflector::Reflector, u8_to_usize, ALPHABET_LEN};
 #[derive(Clone)]
 pub struct Rotor {
   connections: [(usize, usize); ALPHABET_LEN],
@@ -8,6 +6,7 @@ pub struct Rotor {
 }
 
 impl Rotor {
+  #[inline(always)]
   pub fn new(code: RotorCode) -> Self {
     Self::from_string(code.to_string())
   }
@@ -37,6 +36,7 @@ impl Rotor {
     (self.connections[(val + self.rotation) % ALPHABET_LEN].0 + self.rotation) % ALPHABET_LEN
   }
 
+  #[inline(always)]
   pub fn pass_back(&self, val: usize) -> usize {
     let i = Self::loop_val(val as i32 - self.rotation as i32);
     Self::loop_val(self.connections[i].1 as i32 - self.rotation as i32)
@@ -70,12 +70,14 @@ pub struct Rotors {
 }
 
 impl Rotors {
+  #[inline(always)]
   pub fn new(rotor1: Rotor, rotor2: Rotor, rotor3: Rotor, reflector: Reflector) -> Self {
     Rotors {
       rotors: (rotor1, rotor2, rotor3),
       reflector,
     }
   }
+
   pub fn pass(&mut self, mut val: usize) -> usize {
     val = self
       .rotors
@@ -86,13 +88,11 @@ impl Rotors {
       .rotors
       .0
       .pass_back(self.rotors.1.pass_back(self.rotors.2.pass_back(val)));
-
     if self.rotors.0.rotate() {
       if self.rotors.1.rotate() {
         self.rotors.2.rotate();
       }
     }
-
     val
   }
 }
@@ -166,9 +166,9 @@ mod tests {
   fn rotor2() {
     let r = Rotor::from_string("ekmflgdqvzntowyhxuspaibrcj".to_string()).with_rotation(4);
     for i in 0..ALPHABET_LEN {
-      print!("{},", i);
-      print!("{},", r.pass_forward(i),);
-      println!("{}", r.pass_back(r.pass_forward(i)));
+      print!("{:2},", i);
+      print!("{:2},", r.pass_forward(i),);
+      println!("{:2}", r.pass_back(r.pass_forward(i)));
       assert_eq!(i, r.pass_back(r.pass_forward(i)));
     }
   }
