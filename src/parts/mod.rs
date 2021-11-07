@@ -1,5 +1,5 @@
 mod plugboard;
-pub use plugboard::Plugboard;
+pub use plugboard::{AddConnection, Plugboard};
 
 pub mod reflector;
 pub mod rotor;
